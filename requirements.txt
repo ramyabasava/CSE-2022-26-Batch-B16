@@ -7,5 +7,3 @@ pandas==1.5.3
 pillow
 gunicorn
 
-torch==2.1.0
-torchvision==0.16.0
