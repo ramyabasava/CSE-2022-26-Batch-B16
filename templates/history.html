@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scan History - AgriScan</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+}
+</style>
+
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+<!-- HEADER -->
+
+<nav class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+
+<div class="flex items-center gap-8">
+
+<span class="text-xl font-bold text-green-700">🌿 AgriScan</span>
+
+<div class="hidden md:flex items-center gap-6">
+<a href="{{ url_for('dashboard') }}" class="text-sm font-semibold text-slate-500 hover:text-green-600">Dashboard</a>
+<a href="{{ url_for('upload') }}" class="text-sm font-semibold text-slate-500 hover:text-green-600">New Scan</a>
+<a href="{{ url_for('history') }}" class="text-sm font-semibold text-green-600">History</a>
+</div>
+
+</div>
+
+<div class="w-9 h-9 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
+RA
+</div>
+
+</nav>
+
+<!-- MAIN -->
+
+<main class="max-w-6xl mx-auto px-6 py-10">
+
+<!-- TITLE -->
+
+<div class="flex items-center justify-between mb-10">
+
+<div>
+<h1 class="text-4xl font-extrabold text-slate-900 mb-2">
+Scan History
+</h1>
+
+<p class="text-slate-500">
+All previously analyzed plant scans.
+</p>
+</div>
+
+<a href="{{ url_for('upload') }}"
+class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition">
+
+* New Scan
+
+</a>
+
+</div>
+
+<!-- SCANS GRID -->
+
+<div class="grid md:grid-cols-3 gap-8">
+
+{% for scan in scans %}
+
+<div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden border">
+
+<!-- IMAGE -->
+
+<div class="relative">
+
+<img src="{{ url_for('static', filename='uploads/' + scan.image_file) }}"
+class="w-full h-48 object-cover">
+
+<!-- CONFIDENCE BADGE -->
+
+<div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full">
+
+{{ scan.confidence }}%
+
+</div>
+
+</div>
+
+<!-- CARD CONTENT -->
+
+<div class="p-5">
+
+<h3 class="text-lg font-bold text-slate-800 mb-2">
+{{ scan.disease_name }}
+</h3>
+
+<p class="text-sm text-slate-500 mb-4">
+AI confidence: <span class="font-semibold">{{ scan.confidence }}%</span>
+</p>
+
+<a href="{{ url_for('result', id=scan.id) }}"
+class="block text-center bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+
+View Result
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- EMPTY STATE -->
+
+{% if scans|length == 0 %}
+
+<div class="text-center mt-20">
+
+<h3 class="text-xl font-bold text-slate-700 mb-2">
+No scans yet
+</h3>
+
+<p class="text-slate-500 mb-6">
+Upload your first plant image to start analysis.
+</p>
+
+<a href="{{ url_for('upload') }}"
+class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700">
+
+Upload Image
+
+</a>
+
+</div>
+
+{% endif %}
+
+</main>
+
+</body>
+</html>

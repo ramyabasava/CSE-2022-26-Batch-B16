@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - AgriScan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- NAVIGATION (Consistent with Dashboard) -->
+    <nav class="bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="bg-green-100 p-1.5 rounded-lg">
+                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-800">AgriScan</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="dashboard.html" class="text-sm font-semibold text-slate-500 hover:text-green-600">Dashboard</a>
+                <a href="upload.html" class="text-sm font-semibold text-slate-500 hover:text-green-600">New Scan</a>
+                <a href="history.html" class="text-sm font-semibold text-slate-500 hover:text-green-600">History</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+             <div class="w-10 h-10 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-sm ring-2 ring-white ring-offset-2">RA</div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        
+        <div class="mb-10">
+            <h1 class="text-3xl font-black text-slate-900">Profile Settings</h1>
+            <p class="text-slate-500 font-medium mt-1">Manage your account information and preferences.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+            
+            <!-- SECTION 1: PERSONAL INFO -->
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 md:p-10">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-20 h-20 bg-cyan-500 text-white rounded-3xl flex items-center justify-center text-2xl font-black shadow-lg shadow-cyan-100">RA</div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-900">{{ current_user.full_name }}</h3>
+                        <p class="text-slate-400 font-bold text-xs uppercase tracking-widest mt-1">Farmer • Joined Feb 2026</p>
+                    </div>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Full Name</label>
+                            <input type="text" value="{{ current_user.full_name }}" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none font-bold text-slate-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Email Address</label>
+                            <input type="email" value="{{ current_user.email }}" disabled class="w-full px-5 py-4 rounded-2xl bg-slate-100 border border-slate-200 text-slate-400 cursor-not-allowed font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Phone Number</label>
+                            <input type="tel" value="{{ current_user.phone }}" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none font-bold text-slate-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Location</label>
+                            <input type="text" value="" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none font-bold text-slate-700">
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="bg-green-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-700 transition shadow-lg shadow-green-100">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- SECTION 2: SECURITY -->
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 md:p-10">
+                <h4 class="text-lg font-bold text-slate-900 mb-6">Security</h4>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Current Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">New Password</label>
+                            <input type="password" placeholder="Min. 8 characters" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">Confirm New Password</label>
+                            <input type="password" placeholder="••••••••" class="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition outline-none">
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <button type="button" class="text-green-600 font-extrabold text-sm hover:underline">Update Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: LOGOUT / DANGER ZONE -->
+            <div class="bg-red-50/50 rounded-[2.5rem] border border-red-100 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h4 class="text-lg font-bold text-red-900">Sign Out</h4>
+                    <p class="text-red-600/70 text-sm font-medium">Clear your session and return to the home screen.</p>
+                </div>
+                <a href="index.html" class="bg-red-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-100">
+                    Sign Out
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

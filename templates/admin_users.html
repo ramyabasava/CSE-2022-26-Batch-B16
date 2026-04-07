@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Users</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+header{
+background:#1b5e20;
+color:white;
+padding:18px;
+font-size:22px;
+}
+
+.container{
+padding:25px;
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+text-decoration:none;
+background:#2e7d32;
+color:white;
+padding:10px 15px;
+border-radius:6px;
+}
+
+.back-btn:hover{
+background:#1b5e20;
+}
+
+.search-box{
+padding:8px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+margin-bottom:20px;
+text-align:center;
+}
+
+.card h2{
+margin:0;
+color:#2e7d32;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+th{
+background:#2e7d32;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+text-align:center;
+}
+
+tr:nth-child(even){
+background:#f2f2f2;
+}
+
+tr:hover{
+background:#e8f5e9;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+👥 Admin Panel – Registered Users
+</header>
+
+
+<div class="container">
+
+
+<div class="top-bar">
+
+<a class="back-btn" href="{{ url_for('admin_dashboard') }}">⬅ Back to Dashboard</a>
+
+<input type="text" id="searchInput" class="search-box" placeholder="Search users...">
+
+</div>
+
+
+<div class="card">
+
+<h2>Total Registered Users</h2>
+
+<p>{{ users|length }}</p>
+
+</div>
+
+
+<table id="userTable">
+
+<tr>
+<th>ID</th>
+<th>Full Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Location</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.id }}</td>
+
+<td>{{ user.full_name }}</td>
+
+<td>{{ user.email }}</td>
+
+<td>{{ user.phone }}</td>
+
+<td>{{ user.location }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+<script>
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
+
+let filter = searchInput.value.toLowerCase();
+
+let rows = document.querySelectorAll("#userTable tr");
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+let text = row.innerText.toLowerCase();
+
+row.style.display = text.includes(filter) ? "" : "none";
+
+});
+
+});
+
+</script>
+
+
+</body>
+</html>
