@@ -2,11 +2,10 @@ flask
 flask-login
 flask-sqlalchemy
 werkzeug
-numpy
+numpy==1.24.4
 pandas
 pillow
 gunicorn
 
-# CPU-only PyTorch (IMPORTANT)
-torch==2.0.0+cpu --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.15.0+cpu --index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
