@@ -1,0 +1,14 @@
+# Ignore virtual env
+venv/
+
+# Python cache
+__pycache__/
+
+# Large ML models
+*.pt
+*.pkl
+*.h5
+
+# System files
+desktop.ini
+Thumbs.db

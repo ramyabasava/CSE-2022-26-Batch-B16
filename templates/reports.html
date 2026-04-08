@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Scan Reports</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+header{
+background:#1b5e20;
+color:white;
+padding:18px;
+font-size:22px;
+}
+
+.container{
+padding:25px;
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+text-decoration:none;
+background:#2e7d32;
+color:white;
+padding:10px 15px;
+border-radius:6px;
+}
+
+.back-btn:hover{
+background:#1b5e20;
+}
+
+.search-box{
+padding:8px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+margin-bottom:20px;
+text-align:center;
+}
+
+.card h2{
+margin:0;
+color:#2e7d32;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+th{
+background:#2e7d32;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+text-align:center;
+}
+
+tr:nth-child(even){
+background:#f2f2f2;
+}
+
+tr:hover{
+background:#e8f5e9;
+}
+
+.leaf-img{
+width:70px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.badge{
+padding:5px 10px;
+border-radius:5px;
+color:white;
+font-weight:bold;
+}
+
+.high{
+background:#2e7d32;
+}
+
+.medium{
+background:#f9a825;
+}
+
+.low{
+background:#c62828;
+}
+
+/* Image popup */
+
+#imageModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+#imageModal img{
+max-width:400px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+📊 Admin Panel – Disease Scan Reports
+</header>
+
+
+<div class="container">
+
+<div class="top-bar">
+
+<a class="back-btn" href="{{ url_for('admin_dashboard') }}">⬅ Back to Dashboard</a>
+
+<input type="text" id="searchInput" class="search-box" placeholder="Search reports...">
+
+</div>
+
+
+<div class="card">
+
+<h2>Total Scan Reports</h2>
+
+<p>{{ scans|length }}</p>
+
+</div>
+
+
+<table id="reportTable">
+
+<tr>
+<th>ID</th>
+<th>Leaf Image</th>
+<th>User</th>
+<th>Disease</th>
+<th>Confidence</th>
+<th>Date</th>
+</tr>
+
+{% for scan in scans %}
+
+<tr>
+
+<td>{{ scan.id }}</td>
+
+<td>
+<img class="leaf-img"
+src="{{ url_for('static', filename='uploads/' + scan.image_file) }}"
+onclick="showImage(this.src)">
+</td>
+
+<td>{{ scan.owner.full_name }}</td>
+
+<td>{{ scan.disease_name }}</td>
+
+<td>
+
+{% if scan.confidence > 80 %}
+<span class="badge high">{{ scan.confidence }}%</span>
+
+{% elif scan.confidence > 50 %}
+<span class="badge medium">{{ scan.confidence }}%</span>
+
+{% else %}
+<span class="badge low">{{ scan.confidence }}%</span>
+{% endif %}
+
+</td>
+
+<td>{{ scan.date_scanned.strftime('%d-%m-%Y') }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+<!-- Image Popup -->
+
+<div id="imageModal" onclick="closeImage()">
+<img id="popupImage">
+</div>
+
+
+<script>
+
+function showImage(src){
+
+document.getElementById("imageModal").style.display="flex";
+
+document.getElementById("popupImage").src=src;
+
+}
+
+function closeImage(){
+
+document.getElementById("imageModal").style.display="none";
+
+}
+
+
+/* Search Filter */
+
+const searchInput=document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup",function(){
+
+let filter=searchInput.value.toLowerCase();
+
+let rows=document.querySelectorAll("#reportTable tr");
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+let text=row.innerText.toLowerCase();
+
+row.style.display=text.includes(filter)?"":"none";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

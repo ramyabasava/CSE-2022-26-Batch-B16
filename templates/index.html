@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriScan - AI-Powered Plant Disease Classification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass-nav { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.8); }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <!-- NAVIGATION -->
+    <nav class="glass-nav fixed top-0 w-full z-50 border-b border-slate-100">
+        <div class="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+                <div class="bg-green-600 p-2 rounded-lg">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight">AgriScan</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#features" class="text-sm font-semibold text-slate-500 hover:text-green-600">Features</a>
+                <a href="#how-it-works" class="text-sm font-semibold text-slate-500 hover:text-green-600">How it Works</a>
+                <a href="#about" class="text-sm font-semibold text-slate-500 hover:text-green-600">Research</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="{{ url_for('admin_login') }}" class="text-xs font-bold text-slate-400 hover:text-slate-900 transition mr-4">Admin Portal</a>
+            
+                    <a href="{{ url_for('login') }}" class="text-sm font-bold text-slate-600 hover:text-green-600">Log in</a>
+                    <a href="{{ url_for('register') }}" class="bg-green-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-green-700 transition shadow-lg shadow-green-100">Get Started</a>
+            
+            </div>
+
+            
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="inline-block px-4 py-1.5 rounded-full bg-green-50 text-green-600 text-xs font-black tracking-widest uppercase mb-6">
+                    ● AI-Powered Image Segmentation
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 text-slate-900">
+                    Protect Your Crops with <span class="text-green-600">Intelligent Analysis</span>
+                </h1>
+                <p class="text-slate-500 text-lg lg:text-xl leading-relaxed mb-10 max-w-lg">
+                    A novel image segmentation technique powered by deep learning to detect and identify plant diseases with 98% accuracy.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ url_for('register') }}" class="bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-green-700 transition shadow-xl shadow-green-200">
+                        Start Scanning Free →
+                    </a>
+                    <a href="#how-it-works" class="bg-white border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition">
+                        View Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image Mockup -->
+            <div class="relative">
+                <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+                    <img src="https://images.pexels.com/photos/7457173/pexels-photo-7457173.jpeg" class="w-full h-[500px] object-cover">
+                    <div class="absolute bottom-8 left-8 right-8 bg-black/40 backdrop-blur-xl p-8 rounded-3xl border border-white/20 text-white">
+                        <div class="flex items-center gap-2 text-xs font-bold mb-2">
+                            <span class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-[10px]">✓</span>
+                            Analysis Complete
+                        </div>
+                        <h3 class="text-2xl font-black">Tomato Early Blight</h3>
+                        <p class="text-white/70 font-semibold italic">98.5% Confidence Score</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES SECTION (Matches Screenshot 12) -->
+    <section id="features" class="bg-slate-50 py-32">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl lg:text-5xl font-black mb-6 text-slate-900">Why Choose AgriScan?</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mb-20 text-lg font-medium">
+                Our platform combines cutting-edge AI with agricultural expertise to provide actionable insights for farmers and researchers.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4">Instant Detection</h4>
+                    <p class="text-slate-500 leading-relaxed font-medium">
+                        Upload a photo and get results in seconds. Our AI model identifies over 50 common plant diseases with high accuracy.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition text-orange-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4">Track Health History</h4>
+                    <p class="text-slate-500 leading-relaxed font-medium">
+                        Keep a digital record of all your scans. Monitor disease spread and the effectiveness of your treatments over time.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition text-blue-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black mb-4">Expert Treatments</h4>
+                    <p class="text-slate-500 leading-relaxed font-medium">
+                        Don't just diagnose—solve. Get detailed prevention and treatment recommendations for every detected issue.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH SECTION (Based on the PDF) -->
+    <section id="about" class="py-32">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1">
+                <div class="bg-slate-100 rounded-[3rem] p-12 aspect-square flex flex-col justify-center relative overflow-hidden">
+                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-green-200 rounded-full blur-3xl opacity-50"></div>
+                     <h5 class="text-green-600 font-black uppercase tracking-widest text-xs mb-4">Deep Learning Insight</h5>
+                     <h3 class="text-4xl font-black mb-6">Innovative Segmentation</h3>
+                     <p class="text-slate-600 leading-relaxed font-medium mb-8">
+                        Our model doesn't just look at the leaf; it isolates the infected patches using **Image Segmentation**. By ignoring background noise, we achieve a validation accuracy of **98.2%** using the DenseNet201 architecture.
+                     </p>
+                     <ul class="space-y-4">
+                        <li class="flex items-center gap-3 font-bold text-slate-700">
+                            <span class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
+                            Trained on 54,000+ PlantVillage samples
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-slate-700">
+                            <span class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
+                            Supports 39 different plant classes
+                        </li>
+                     </ul>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <h2 class="text-4xl lg:text-5xl font-black mb-8 leading-tight">Improving Accuracy with <span class="text-green-600">Advanced Models</span></h2>
+                <p class="text-slate-500 text-lg mb-8 font-medium">
+                    Traditional methods analyze the whole leaf, which often includes background noise. Our methodology segments the diseased region first for better feature extraction.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                        <p class="text-green-600 font-black text-3xl">98%</p>
+                        <p class="text-slate-400 font-bold text-xs uppercase">Accuracy</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                        <p class="text-blue-600 font-black text-3xl">DenseNet</p>
+                        <p class="text-slate-400 font-bold text-xs uppercase">Architecture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <div class="bg-green-600 rounded-[3.5rem] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-green-200">
+            <div class="relative z-10">
+                <h2 class="text-4xl lg:text-6xl font-black mb-8">Ready to Protect Your Plants?</h2>
+                <p class="text-green-50 max-w-2xl mx-auto text-lg lg:text-xl mb-12 font-medium opacity-90">
+                    Join researchers and farmers using our platform to detect plant diseases early and improve crop health outcomes.
+                </p>
+                <a href="{{ url_for('register') }}" class="inline-block bg-white text-green-600 px-10 py-5 rounded-2xl font-black text-xl hover:bg-slate-50 transition shadow-xl">
+                    Create Free Account →
+                </a>
+            </div>
+            <!-- Decorative background circles -->
+            <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-green-500 rounded-full opacity-50"></div>
+            <div class="absolute -top-20 -left-20 w-60 h-60 bg-green-700 rounded-full opacity-30"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="bg-green-100 p-1 rounded-lg">
+                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+                <span class="font-bold text-slate-800">AgriScan</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium">© 2026 AgriScan. Plant Disease Classification Platform.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-green-600 text-xs font-bold uppercase tracking-widest transition">Privacy</a>
+                <a href="#" class="text-slate-400 hover:text-green-600 text-xs font-bold uppercase tracking-widest transition">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
