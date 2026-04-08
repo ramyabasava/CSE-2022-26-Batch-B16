@@ -1,4 +1,4 @@
-git initstreamlit==1.30.0
+streamlit==1.30.0
 pandas==1.5.3
 torch==2.1.1
 streamlit-option-menu==0.3.6
