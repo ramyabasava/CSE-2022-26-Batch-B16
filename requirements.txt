@@ -3,15 +3,16 @@ setuptools==68.2.2
 wheel
 
 flask==2.3.3
-flask-login
-flask-sqlalchemy
-werkzeug
-numpy==1.24.4
+flask-login==0.6.3
+flask-sqlalchemy==3.0.5
+werkzeug==2.3.7
+
+numpy==1.26.4
 pandas==1.5.3
-pillow
-gunicorn
+pillow==10.2.0
+
+gunicorn==21.2.0
 
 --extra-index-url https://download.pytorch.org/whl/cpu
 
 torch==2.2.2
-# torchvision==0.17.2   ← REMOVE THIS
